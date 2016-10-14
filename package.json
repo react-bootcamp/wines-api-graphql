@@ -1,0 +1,14 @@
+{
+  "name": "wines-api-graphql",
+  "version": "1.0.0",
+  "description": "The Open Wine Database API exposed as graphql",
+  "main": "server.js",
+  "author": "Mathieu ANCELIN",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-graphql": "^0.5.4",
+    "graphql": "^0.7.2",
+    "node-fetch": "^1.6.3"
+  }
+}
