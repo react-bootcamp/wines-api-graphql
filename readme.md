@@ -2,7 +2,7 @@
 
 The GraphQL version of the Wine api
 
-available at `https://wines-api-graphql.herokuapp.com/graphql`
+available at [https://wines-api-graphql.herokuapp.com/graphql](https://wines-api-graphql.herokuapp.com/graphql)
 
 ## Try it
 
