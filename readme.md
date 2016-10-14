@@ -24,7 +24,7 @@ query WinesQuery {
 
 ```graphql
 {
-  wine(id: String) {
+  wine(id: String!) {
     id: String
     name: String
     type: String
@@ -37,7 +37,7 @@ query WinesQuery {
       name: String
       region: String
     }
-    comments(first?: Int, last?: Int) {
+    comments(first: Int?, last: Int?) {
       date: String
       title: String
       content: String
@@ -45,17 +45,17 @@ query WinesQuery {
   }
   region {
     id: String
-    wine(id!: String) {
+    wine(id: String!) {
       # see /wine
     }
-    wines(first?: Int, last?: Int, ids?: [String]) {
+    wines(first: Int?, last: Int?, ids: [String]?) {
       # see /wine
     }
   }
-  regions(first?: Int, last?: Int, ids?: [String]) {
+  regions(first: Int?, last: Int?, ids: [String]?) {
     # see /region
   }
-  wines(first?: Int, last?: Int, ids?: [String]) {
+  wines(first: Int?, last: Int?, ids: [String]?) {
     # see /wine
   }
 }
