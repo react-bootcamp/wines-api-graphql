@@ -8,19 +8,19 @@ available at `https://wines-api-graphql.herokuapp.com/graphql`
 
 ```
 curl -X POST -H 'Content-Type: application/graphql' 'https://wines-api-graphql.herokuapp.com/graphql' -d '
-query WinesQuery {
-  wines(first: 3) {
-    name
-    appellation {
+  query WinesQuery {
+    wines(first: 3) {
       name
-      region
+      appellation {
+        name
+        region
+      }
     }
   }
-}
 '
 ```
 
-## Schema
+## Query Schema
 
 ```graphql
 {
