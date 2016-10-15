@@ -105,6 +105,7 @@ const QueryType = new GraphQLObjectType({
   fields: () => ({
     regions: {
       type: new GraphQLList(RegionType),
+      description: 'Fetch some regions that you can filter with first, last or sequence of ids',
       args: {
         ids: { description: 'Sequence of region id to filter', type: new GraphQLList(GraphQLString) },
         first: { description: 'Filter the first n regions', type: GraphQLInt },
@@ -116,6 +117,7 @@ const QueryType = new GraphQLObjectType({
     },
     wines: {
       type: new GraphQLList(WineType),
+      description: 'Fetch some wines that you can filter with first, last or sequence of ids',
       args: {
         ids: { description: 'Sequence of wine id to filter', type: new GraphQLList(GraphQLString) },
         first: { description: 'Filter the first n wines', type: GraphQLInt },
@@ -127,6 +129,7 @@ const QueryType = new GraphQLObjectType({
     },
     region: {
       type: RegionType,
+      description: 'Fetch one specific region by id',
       args: {
         id: {
           description: 'id of the region to fetch',
@@ -139,6 +142,7 @@ const QueryType = new GraphQLObjectType({
     },
     wine: {
       type: WineType,
+      description: 'Fetch one specific wine by id',
       args: {
         id: {
           description: 'id of the wine to fetch',
