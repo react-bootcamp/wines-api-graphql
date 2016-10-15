@@ -102,6 +102,7 @@ const WineType = new GraphQLObjectType({
 
 const QueryType = new GraphQLObjectType({
   name: 'Query',
+  description: 'Main query to fetch wines and/or regions and/or a unique wine and/or region',
   fields: () => ({
     regions: {
       type: new GraphQLList(RegionType),
