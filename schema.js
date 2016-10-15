@@ -23,14 +23,14 @@ const {
 
 const RegionType = new GraphQLObjectType({
   name: 'Region',
-  description: 'A region',
+  description: 'A region where you can find wine',
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLString), description: 'The id of the region.' },
     wine: {
       type: WineType,
-      description: 'One wine of the region',
+      description: 'One specific wine of the region',
       args: {
-        id: { description: 'id to filter', type: new GraphQLNonNull(GraphQLString) }
+        id: { description: 'id of the wine to fetch', type: new GraphQLNonNull(GraphQLString) }
       },
       resolve: (region, args) => {
         return getWine(args.id); // TODO: should also match region
@@ -40,9 +40,9 @@ const RegionType = new GraphQLObjectType({
       type: new GraphQLList(WineType),
       description: 'The wines of the region',
       args: {
-        ids: { description: 'ids to filter', type: new GraphQLList(GraphQLString) },
-        first: { description: 'First limit', type: GraphQLInt },
-        last: { description: 'Last limit', type: GraphQLInt }
+        ids: { description: 'Sequence of wine id to filter', type: new GraphQLList(GraphQLString) },
+        first: { description: 'Filter the first n wines of the region', type: GraphQLInt },
+        last: { description: 'Filter the last n wines of the region', type: GraphQLInt }
       },
       resolve: (region, args) => {
         return getWinesFromRegion(region, args);
@@ -62,7 +62,7 @@ const AppelationType = new GraphQLObjectType({
 
 const ImageType = new GraphQLObjectType({
   name: 'Image',
-  description: 'A wine image',
+  description: 'A wine bottle image',
   fields: () => ({
     url: { type: new GraphQLNonNull(GraphQLString), description: 'The URL of the image' }
   })
@@ -70,7 +70,7 @@ const ImageType = new GraphQLObjectType({
 
 const CommentType = new GraphQLObjectType({
   name: 'Comment',
-  description: 'A comment',
+  description: 'A comment for a wine',
   fields: () => ({
     date: { type: new GraphQLNonNull(GraphQLString), description: 'The date of the comment' },
     title: { type: new GraphQLNonNull(GraphQLString), description: 'The title of the comment' },
@@ -84,19 +84,19 @@ const WineType = new GraphQLObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLString), description: 'The id of the wine.' },
     name: { type: GraphQLString, description: 'The name of the wine.' },
-    type: { type: GraphQLString, description: 'Type of the wine.' },
-    image: { type: ImageType, description: 'Image of the wine.', resolve: (wine) => getImage(wine) },
+    type: { type: GraphQLString, description: 'The type of the wine.' },
+    image: { type: ImageType, description: 'The image of the wine bottle.', resolve: (wine) => getImage(wine) },
     grapes: { type: new GraphQLList(GraphQLString), description: 'Grapes of the wine.' },
     appellation: { type: AppelationType, description: 'Appelation of the wine.', resolve: wine => wine.appellation },
     comments: {
       type: new GraphQLList(CommentType),
-      description: 'Comments of the wine.',
+      description: 'Comments for the current wine.',
       args: {
-        first: { description: 'First limit', type: GraphQLInt },
-        last: { description: 'Last limit', type: GraphQLInt }
+        first: { description: 'Filter the first n comments of the wine', type: GraphQLInt },
+        last: { description: 'Filter the last n comments of the wine', type: GraphQLInt }
       },
       resolve: (wine, args) => getComments(wine, args) },
-    liked: { type: GraphQLBoolean, description: 'Liked of the wine.', resolve: wine => getLike(wine) },
+    liked: { type: GraphQLBoolean, description: 'Whether the wine is liked or not.', resolve: wine => getLike(wine) },
   })
 });
 
@@ -106,9 +106,9 @@ const QueryType = new GraphQLObjectType({
     regions: {
       type: new GraphQLList(RegionType),
       args: {
-        ids: { description: 'ids to filter', type: new GraphQLList(GraphQLString) },
-        first: { description: 'First limit', type: GraphQLInt },
-        last: { description: 'Last limit', type: GraphQLInt }
+        ids: { description: 'Sequence of region id to filter', type: new GraphQLList(GraphQLString) },
+        first: { description: 'Filter the first n regions', type: GraphQLInt },
+        last: { description: 'Filter the last n regions', type: GraphQLInt }
       },
       resolve: (root, args) => {
         return getRegions(args)
@@ -117,9 +117,9 @@ const QueryType = new GraphQLObjectType({
     wines: {
       type: new GraphQLList(WineType),
       args: {
-        ids: { description: 'ids to filter', type: new GraphQLList(GraphQLString) },
-        first: { description: 'First limit', type: GraphQLInt },
-        last: { description: 'Last limit', type: GraphQLInt }
+        ids: { description: 'Sequence of wine id to filter', type: new GraphQLList(GraphQLString) },
+        first: { description: 'Filter the first n wines', type: GraphQLInt },
+        last: { description: 'Filter the last n wines', type: GraphQLInt }
       },
       resolve: (root, args) => {
         return getWines(args)
@@ -129,7 +129,7 @@ const QueryType = new GraphQLObjectType({
       type: RegionType,
       args: {
         id: {
-          description: 'id of the region',
+          description: 'id of the region to fetch',
           type: new GraphQLNonNull(GraphQLString)
         }
       },
@@ -141,7 +141,7 @@ const QueryType = new GraphQLObjectType({
       type: WineType,
       args: {
         id: {
-          description: 'id of the wine',
+          description: 'id of the wine to fetch',
           type: new GraphQLNonNull(GraphQLString)
         }
       },
