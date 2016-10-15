@@ -1,5 +1,9 @@
 const { graphql } = require('graphql');
-const { schema } = require('./wines');
+const { schema } = require('./schema');
+
+function prettify(obj) {
+  return JSON.stringify(obj, null, 2);
+}
 
  const query1 = `
    query WineQuery {
