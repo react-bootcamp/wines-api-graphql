@@ -27,7 +27,7 @@ function getRegions(args = {}) {
       } else if (args.last) {
         return regions.slice(regions.length - args.last, regions.length);
       } else if (args.ids) {
-        return regions.fitler(r => args.ids.indexOf(r.id) > -1);
+        return regions.filter(r => args.ids.indexOf(r.id) > -1);
       } else {
         return regions;
       }
@@ -43,7 +43,7 @@ function getWines(args = {}) {
     } else if (args.last) {
       return wines.slice(wines.length - args.last, wines.length);
     } else if (args.ids) {
-      return wines.fitler(r => args.ids.indexOf(r.id) > -1);
+      return wines.filter(r => args.ids.indexOf(r.id) > -1);
     } else {
       return wines;
     }
@@ -57,7 +57,7 @@ function getWinesFromRegion(region, args = {}) {
     } else if (args.last) {
       return wines.slice(wines.length - args.last, wines.length);
     } else if (args.ids) {
-      return wines.fitler(r => args.ids.indexOf(r.id) > -1);
+      return wines.filter(r => args.ids.indexOf(r.id) > -1);
     } else {
       return wines;
     }
