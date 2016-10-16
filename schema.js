@@ -88,6 +88,7 @@ const WineType = new GraphQLObjectType({
     image: { type: ImageType, description: 'The image of the wine bottle.', resolve: (wine) => getImage(wine) },
     region: { type: GraphQLString, description: 'The parent region of the wine', resolve: wine => wine.appellation.region },
     appellation: { type: AppelationType, description: 'Appelation of the wine.', resolve: wine => wine.appellation },
+    commentsCount: { type: GraphQLInt, description: 'Number of comments for the wine.', resolve: (wine, args) => getComments(wine, args).then(w => w.length) },
     comments: {
       type: new GraphQLList(CommentType),
       description: 'Comments for the current wine.',
