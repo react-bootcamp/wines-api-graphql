@@ -32,6 +32,7 @@ curl -X POST -H 'Content-Type: application/graphql' 'https://wines-api-graphql.h
     id: String
     name: String
     type: String
+    region: String
     grapes: [String]
     liked: Int
     image {
