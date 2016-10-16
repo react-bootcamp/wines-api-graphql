@@ -24,6 +24,7 @@ function getRegions(args = {}) {
 
 function getWines(args = {}) {
   return getRegions()
+    .then(regions => args.fromRegions ? regions.filter(r => args.fromRegions.indexOf(r) > -1) : regions)
     .then(regions => Promise.all(regions.map(r => getWinesFromRegion(r)))).then(r => {
       return r.reduce((a, b) => a.concat(b), []);
     }).then(wines => {

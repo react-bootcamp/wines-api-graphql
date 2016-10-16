@@ -59,7 +59,7 @@ curl -X POST -H 'Content-Type: application/graphql' 'https://wines-api-graphql.h
   regions(first: Int?, last: Int?, ids: [String]?) {
     # see /region
   }
-  wines(first: Int?, last: Int?, ids: [String]?) {
+  wines(first: Int?, last: Int?, ids: [String]?, fromRegions: [String]?) {
     # see /wine
   }
 }

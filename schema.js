@@ -120,6 +120,7 @@ const QueryType = new GraphQLObjectType({
       type: new GraphQLList(WineType),
       description: 'Fetch some wines that you can filter with first, last or sequence of ids',
       args: {
+        fromRegions: { description: 'Sequence of region id to filter wines', type: new GraphQLList(GraphQLString) },
         ids: { description: 'Sequence of wine id to filter', type: new GraphQLList(GraphQLString) },
         first: { description: 'Filter the first n wines', type: GraphQLInt },
         last: { description: 'Filter the last n wines', type: GraphQLInt }
