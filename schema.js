@@ -26,7 +26,7 @@ const RegionType = new GraphQLObjectType({
   description: 'A region where you can find wine',
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLString), description: 'The id of the region.' },
-    name: { type: new GraphQLNonNull(GraphQLString), description: 'The name of the region.' },
+    name: { type: new GraphQLNonNull(GraphQLString), description: 'The name of the region.', resolve: region => region.id },
     wine: {
       type: WineType,
       description: 'One specific wine of the region',
