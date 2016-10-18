@@ -35,6 +35,7 @@ curl -X POST -H 'Content-Type: application/graphql' 'https://wines-api-graphql.h
     region: String
     grapes: [String]
     liked: Int
+    commentsCount: Int
     image {
       url: String
     }
@@ -50,6 +51,7 @@ curl -X POST -H 'Content-Type: application/graphql' 'https://wines-api-graphql.h
   }
   region {
     id: String
+    name: String
     wine(id: String!) {
       # see /wine
     }
